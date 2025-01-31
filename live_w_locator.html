@@ -13,6 +13,60 @@
     <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/pygment_trac.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+    <style>
+        /* Layout de dos columnas */
+        .container {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-top: 20px;
+        }
+  
+        #interactive {
+          width: 60%;
+          height: 480px;
+          border: 2px solid #ccc;
+          background-color: #000;
+          position: relative;
+        }
+  
+        #result_strip {
+          width: 35%;
+          max-height: 480px;
+          overflow-y: auto;
+          border: 2px solid #ccc;
+          padding: 10px;
+          background-color: #f4f4f4;
+          box-sizing: border-box;
+        }
+  
+        .thumbnails {
+          list-style-type: none;
+          padding: 0;
+        }
+  
+        .thumbnails li {
+          margin-bottom: 10px;
+        }
+  
+        .scan-speed {
+          font-size: 12px;
+          color: #888;
+        }
+  
+        .caption {
+          padding: 5px;
+          background-color: #fff;
+          border-radius: 5px;
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+  
+        h4.code {
+          font-size: 16px;
+          margin: 0;
+          font-weight: bold;
+        }
+      </style>
 
   </head>
   <body>
@@ -21,22 +75,13 @@
       </header>
       <section>
         <section id="container" class="container">
-                <!-- <fieldset class="reader-config-group">
-                        <span>Resolution (long side)</span>
-                        <select name="input-stream_constraints">
-                            <option value="320x240">320px</option>
-                            <option selected="selected" value="640x480">640px</option>
-                            <option value="800x600">800px</option>
-                            <option value="1280x720">1280px</option>
-                            <option value="1600x960">1600px</option>
-                            <option value="1920x1080">1920px</option>
-                        </select>
-                    </label>
-                -->
+            <!-- Vista de la cámara -->
+            <div id="interactive" class="viewport"></div>
+
+            <!-- Lista con los códigos -->
             <div id="result_strip">
                 <ul class="thumbnails"></ul>
             </div>
-            <div id="interactive" class="viewport"></div>
         </section>
 
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -52,3 +97,15 @@
     <script src="https://serratus.github.io/quaggaJS/javascripts/scale.fix.js"></script>
   </body>
 </html>
+                <!-- <fieldset class="reader-config-group">
+                        <span>Resolution (long side)</span>
+                        <select name="input-stream_constraints">
+                            <option value="320x240">320px</option>
+                            <option selected="selected" value="640x480">640px</option>
+                            <option value="800x600">800px</option>
+                            <option value="1280x720">1280px</option>
+                            <option value="1600x960">1600px</option>
+                            <option value="1920x1080">1920px</option>
+                        </select>
+                    </label>
+                -->
