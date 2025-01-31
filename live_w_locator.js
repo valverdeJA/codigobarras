@@ -61,6 +61,18 @@ $(function() {
         }
     });
 
+    Quagga.onDetected(function(result) {
+        var code = result.codeResult.code;
+        var scanTime = result.timestamp; // Tiempo de escaneo (puedes ajustar según lo que necesites)
+
+        // Crear un nuevo párrafo para el código y la velocidad
+        var $node = $('<p></p>').html("Código: " + code + " (Escaneado en: " + scanTime + "ms)");
+
+        // Añadir el nuevo párrafo al contenedor
+        $('#result_strip').prepend($node); // Añade al principio para que el último código aparezca primero
+      });
+
+/* regulero
     var lastScanTime = null; // Para almacenar el tiempo de la última detección
 
     Quagga.onDetected(function(result) {
@@ -81,7 +93,8 @@ $(function() {
 
             $("#result_strip ul.thumbnails").prepend($node); // Agrega el nodo al principio de la lista
     });
-
+    
+*/
 /* BUENA BUENA BUENA
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
