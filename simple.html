@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lector de Códigos de Barras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #interactive {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            border: 2px solid #ccc;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lector de Códigos de Barras</h1>
+    <p>Enfoca un código de barras CODE39 con la cámara.</p>
+    <div id="interactive" class="viewport"></div>
+    <div id="result">Código detectado: <strong id="code"></strong></div>
+
+    <!-- Incluye QuaggaJS -->
+    <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.min.js"></script>
+    <script>
+        // Configuración de QuaggaJS
+        Quagga.init({
+            inputStream: {
+                name: "Live",
+                type: "LiveStream",
+                target: document.querySelector("#interactive"),
+                constraints: {
+                    width: 640,
+                    height: 480,
+                    facingMode: "environment"
+                }
+            },
+            locator: {
+                halfSample: true,
+                patchSize: "medium"
+            },
+            decoder: {
+                readers: ["code_39_reader"]
+            },
+            locate: true, // Activa la localización automática
+            
+
+        }, function(err) {
+            if (err) {
+                console.error("Error al inicializar Quagga:", err);
+                return;
+            }
+            console.log("Quagga inicializado correctamente");
+            Quagga.start();
+        });
+
+        navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: "environment",
+                focusMode: "continuous" // Enfoque automático si está disponible
+            }
+        }).then((stream) => {
+            document.querySelector("#interactive").srcObject = stream;
+        });
+
+        Quagga.onProcessed(function(result) {
+            let drawingCtx = Quagga.canvas.ctx.overlay,
+                drawingCanvas = Quagga.canvas.dom.overlay;
+
+            if (result) {
+                if (result.boxes) {
+                    drawingCtx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+                    result.boxes.forEach((box) => {
+                        Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, {
+                            color: "blue",
+                            lineWidth: 2
+                        });
+                    });
+                }
+            }
+        });
+
+
+
+        // Evento cuando se detecta un código de barras
+        Quagga.onDetected(function(result) {
+            var code = result.codeResult.code;
+            console.log("Código detectado:", code);
+            document.getElementById("code").textContent = code; // Muestra el código detectado
+        });
+    </script>
+</body>
+</html>
