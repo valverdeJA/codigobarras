@@ -34,8 +34,8 @@
                 <label>
                     <span>Barcode-Type</span>
                     <select name="decoder_readers">
-                        <option value="code_128">Code 128</option>
-                        <option value="code_39" selected="selected">Code 39</option>
+                        <option value="code_128" selected="selected">Code 128</option>
+                        <option value="code_39">Code 39</option>
                         <option value="code_39_vin">Code 39 VIN</option>
                         <option value="ean">EAN</option>
                         <option value="ean_extended">EAN-extended</option>
@@ -99,6 +99,8 @@
             </fieldset>
         </div>
       <div id="result_strip">
+        <ul class="thumbnails"></ul>
+        <ul class="collector"></ul>
       </div>
       <div id="interactive" class="viewport"></div>
     </section>
@@ -110,7 +112,7 @@
 
     <script src="vendor/jquery-1.9.0.min.js" type="text/javascript"></script>
     <script src="//webrtc.github.io/adapter/adapter-latest.js" type="text/javascript"></script>
-    <script src="/codigobarras/dist/quagga.min.js" type="text/javascript"></script>
+    <script src="/barcode/dist/quagga.min.js" type="text/javascript"></script>
     <script src="live_w_locator.js" type="text/javascript"></script>
   </body>
 </html>

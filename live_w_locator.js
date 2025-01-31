@@ -36,8 +36,7 @@ $(function() {
             });
         },
         handleError: function(err) {
-            console.err(err);
-            alert("Error al inicializar Quagga: " + err.message);
+            console.log(err);
         },
         checkCapabilities: function() {
             var track = Quagga.CameraAccess.getActiveTrack();
@@ -246,7 +245,7 @@ $(function() {
             frequency: 10,
             decoder: {
                 readers : [{
-                    format: "code_39_reader",
+                    format: "code_128_reader",
                     config: {}
                 }]
             },
@@ -288,9 +287,10 @@ $(function() {
             App.lastResult = code;
             var $node = null, canvas = Quagga.canvas.dom.image;
 
-        // Muestra el resultado en texto plano dentro del div result_strip
-        var resultStrip = document.getElementById("result_strip");
-        resultStrip.innerHTML = "<p>Código detectado: <strong>" + code + "</strong></p>";
+            $node = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
+            $node.find("img").attr("src", canvas.toDataURL());
+            $node.find("h4.code").html(code);
+            $("#result_strip ul.thumbnails").prepend($node);
         }
     });
 
