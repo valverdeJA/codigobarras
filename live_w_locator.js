@@ -9,28 +9,6 @@ $(function() {
                 Quagga.start();
             });
         },
-        _accessByPath: function(obj, path, val) {
-            var parts = path.split('.'),
-                depth = parts.length,
-                setter = (typeof val !== "undefined") ? true : false;
-
-            return parts.reduce(function(o, key, i) {
-                if (setter && (i + 1) === depth) {
-                    if (typeof o[key] === "object" && typeof val === "object") {
-                        Object.assign(o[key], val);
-                    } else {
-                        o[key] = val;
-                    }
-                }
-                return key in o ? o[key] : {};
-            }, obj);
-        },
-        setState: function(path, value) {
-            this._accessByPath(this.state, path, value);
-            console.log(JSON.stringify(this.state));
-            Quagga.stop();
-            App.init();
-        },
         state: {
             inputStream: {
                 type : "LiveStream",
@@ -83,6 +61,29 @@ $(function() {
         }
     });
 
+    var lastScanTime = null; // Para almacenar el tiempo de la última detección
+
+    Quagga.onDetected(function(result) {
+        var code = result.codeResult.code;
+        var currentTime = new Date().getTime(); // Obtener el tiempo actual en milisegundos
+
+        if (lastScanTime !== null) {
+            var scanTime = currentTime - lastScanTime; // Tiempo transcurrido desde la última detección en ms
+            var scanSpeed = 1000 / scanTime; // Velocidad de escaneo en escaneos por segundo
+            var scanSpeedText = "Escaneo detectado en: " + scanSpeed.toFixed(2) + " escaneos por segundo"; // Texto con la velocidad
+        }
+
+        lastScanTime = currentTime; // Actualizamos el tiempo de la última detección
+
+        var $node = $('<li><div class="caption"><h4 class="code"></h4><div class="scan-speed"></div></div></li>'); // Añadimos el div para la velocidad
+
+        $node.find("h4.code").html(code); // Muestra el código en el h4
+        $node.find(".scan-speed").html(scanSpeedText); // Muestra la velocidad de escaneo en el nuevo div
+
+        $("#result_strip ul.thumbnails").prepend($node); // Agrega el código y la velocidad al resultado
+    });
+
+/* BUENA BUENA BUENA
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
 
@@ -93,4 +94,5 @@ $(function() {
             $("#result_strip ul.thumbnails").prepend($node);
         }
     });
+*/
 });
