@@ -36,7 +36,8 @@ $(function() {
             });
         },
         handleError: function(err) {
-            console.log(err);
+            console.err(err);
+            alert("Error al inicializar Quagga: " + err.message);
         },
         checkCapabilities: function() {
             var track = Quagga.CameraAccess.getActiveTrack();
@@ -245,7 +246,7 @@ $(function() {
             frequency: 10,
             decoder: {
                 readers : [{
-                    format: "code_128_reader",
+                    format: "code_39_reader",
                     config: {}
                 }]
             },
