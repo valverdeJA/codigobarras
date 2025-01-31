@@ -6,19 +6,8 @@ $(function() {
                     console.log(err);
                     return;
                 }
-                App.attachListeners();
-                App.checkCapabilities();
                 Quagga.start();
             });
-        },
-        checkCapabilities: function() {
-            var track = Quagga.CameraAccess.getActiveTrack();
-            var capabilities = {};
-            if (typeof track.getCapabilities === 'function') {
-                capabilities = track.getCapabilities();
-            }
-            this.applySettingsVisibility('zoom', capabilities.zoom);
-            this.applySettingsVisibility('torch', capabilities.torch);
         },
         updateOptionsForMediaRange: function(node, range) {
             console.log('updateOptionsForMediaRange', node, range);
@@ -74,26 +63,6 @@ $(function() {
                     $option.selected = streamLabel === device.label;
                     $deviceSelection.appendChild($option);
                 });
-            });
-        },
-        attachListeners: function() {
-            var self = this;
-
-            self.initCameraSelection();
-            $(".controls").on("click", "button.stop", function(e) {
-                e.preventDefault();
-                Quagga.stop();
-            });
-
-            $(".controls .reader-config-group").on("change", "input, select", function(e) {
-                e.preventDefault();
-                var $target = $(e.target),
-                    value = $target.attr("type") === "checkbox" ? $target.prop("checked") : $target.val(),
-                    name = $target.attr("name"),
-                    state = self._convertNameToState(name);
-
-                console.log("Value of "+ state + " changed to " + value);
-                self.setState(state, value);
             });
         },
         _accessByPath: function(obj, path, val) {
@@ -201,11 +170,11 @@ $(function() {
                 patchSize: "medium",
                 halfSample: true
             },
-            numOfWorkers: 2,
+            numOfWorkers: 4,
             frequency: 10,
             decoder: {
                 readers : [{
-                    format: "code_128_reader",
+                    format: "code_39_reader",
                     config: {}
                 }]
             },
