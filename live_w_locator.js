@@ -61,16 +61,30 @@ $(function() {
         }
     });
 
+    var lastScanTime = null;
+
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
-        var scanTime = result.timestamp; // Tiempo de escaneo (puedes ajustar según lo que necesites)
-
+        var currentTime = new Date().getTime(); // Obtener el tiempo actual en milisegundos
+    
+        var scanTime = null;
+        var scanSpeedText = ''; // Inicializamos la variable para mostrar la velocidad de escaneo
+    
+        // Si no es la primera detección, calculamos el tiempo de escaneo y la velocidad
+        if (lastScanTime !== null) {
+            scanTime = currentTime - lastScanTime; // Tiempo transcurrido desde la última detección en ms
+            var scanSpeed = 1000 / scanTime; // Velocidad de escaneo en escaneos por segundo
+            scanSpeedText = " (Velocidad: " + scanSpeed.toFixed(2) + " escaneos por segundo)"; // Texto con la velocidad
+        }
+    
+        lastScanTime = currentTime; // Actualizamos el tiempo de la última detección
+    
         // Crear un nuevo párrafo para el código y la velocidad
-        var $node = $('<p></p>').html("Código: " + code + " (Escaneado en: " + scanTime + "ms)");
-
+        var $node = $('<p></p>').html("Código: " + code + " (Escaneado en: " + scanTime + "ms)" + scanSpeedText);
+    
         // Añadir el nuevo párrafo al contenedor
         $('#result_strip').prepend($node); // Añade al principio para que el último código aparezca primero
-      });
+    });
 
 /* regulero
     var lastScanTime = null; // Para almacenar el tiempo de la última detección
