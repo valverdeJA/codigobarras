@@ -23,7 +23,7 @@
         }
   
         #interactive {
-          width: 60%;
+          width: 80%;
           height: 480px;
           border: 2px solid #ccc;
           background-color: #000;
@@ -31,48 +31,49 @@
         }
   
         #result_strip {
-          width: 35%;
-          max-height: 480px;
-          overflow-y: auto;
-          border: 2px solid #ccc;
-          padding: 10px;
-          background-color: #f4f4f4;
-          box-sizing: border-box;
+        width: 35%;
+        max-height: 480px;
+        overflow-y: auto;
+        border: 2px solid #ccc;
+        padding: 10px;
+        background-color: #f4f4f4;
+        box-sizing: border-box;
         }
-  
+
         .thumbnails {
-          list-style-type: none;
-          padding: 0;
+        list-style-type: none;
+        padding: 0;
+        display: block; /* Asegura que los elementos de la lista estén en formato vertical */
         }
-  
+
         .thumbnails li {
-          margin-bottom: 10px;
+        margin-bottom: 15px; /* Separa los elementos verticalmente */
+        display: flex; /* Flexbox para alinear los contenidos dentro de cada item */
+        flex-direction: column; /* Los elementos dentro de cada li estarán apilados verticalmente */
         }
-  
-        .scan-speed {
-          font-size: 12px;
-          color: #888;
-        }
-  
+
         .caption {
-          padding: 5px;
-          background-color: #fff;
-          border-radius: 5px;
-          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 5px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
-  
+
         h4.code {
-          font-size: 16px;
-          margin: 0;
-          font-weight: bold;
+        font-size: 16px;
+        margin: 0;
+        font-weight: bold;
         }
-      </style>
+
+        .scan-speed {
+        font-size: 12px;
+        color: #888;
+        }
+    </style>
 
   </head>
   <body>
     <div class="wrapper">
-      <header>
-      </header>
       <section>
         <section id="container" class="container">
             <!-- Vista de la cámara -->

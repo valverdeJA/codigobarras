@@ -76,11 +76,10 @@ $(function() {
         lastScanTime = currentTime; // Actualizamos el tiempo de la última detección
 
         var $node = $('<li><div class="caption"><h4 class="code"></h4><div class="scan-speed"></div></div></li>'); // Añadimos el div para la velocidad
+            $node.find("h4.code").html(code); // Muestra el código en h4
+            $node.find(".scan-speed").html("Escaneo detectado en: " + scanTime + "ms"); // Muestra el tiempo de escaneo en el div de la velocidad
 
-        $node.find("h4.code").html(code); // Muestra el código en el h4
-        $node.find(".scan-speed").html(scanSpeedText); // Muestra la velocidad de escaneo en el nuevo div
-
-        $("#result_strip ul.thumbnails").prepend($node); // Agrega el código y la velocidad al resultado
+            $("#result_strip ul.thumbnails").prepend($node); // Agrega el nodo al principio de la lista
     });
 
 /* BUENA BUENA BUENA
