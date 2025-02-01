@@ -13,15 +13,15 @@ $(function() {
             inputStream: {
                 type : "LiveStream",
                 constraints: {
-                    width: {min: 640},
-                    height: {min: 480},
+                    width: {min: 800},
+                    height: {min: 600},
                     aspectRatio: {min: 1, max: 100},
                     facingMode: "environment" // or user
                 }
             },
             locator: {
                 patchSize: "medium",
-                halfSample: true
+                halfSample: false
             },
             numOfWorkers: 4,
             frequency: 10,
