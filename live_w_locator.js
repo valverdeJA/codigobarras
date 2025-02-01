@@ -84,9 +84,10 @@ $(function() {
     
         // Mostrar el código detectado
         $('#detectedCode').html("Código detectado: " + code);
+        //$('#detectedCode').html(`Código detectado: ${code}`);
         //$('#detectedCode').text("Código detectado: " + code);
         // Añadir el nuevo párrafo al contenedor
-        $('#result_strip').prepend($node); // Añade al principio para que el último código aparezca primero
+        //$('#result_strip').prepend($node); // Añade al principio para que el último código aparezca primero
     });
 
 /* regulero
