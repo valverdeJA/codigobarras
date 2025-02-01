@@ -69,10 +69,14 @@ $(function() {
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
         $('#detectedCode').html("Código detectado: " + code);
-    
-        // Obtener el código manual en el momento de la detección
+
+        // Obtener el código manual
         var manualCode = $('#manualInput').val().trim();
-    
+
+        // Mostrar el código manual en la pantalla
+        $('#manualCodeDisplay').html("Código manual: " + manualCode);
+
+        // Comparar el código manual con el código detectado
         if (manualCode && manualCode === code) {
             App.successCount++;
             $('#successCount').text(App.successCount);
@@ -81,14 +85,15 @@ $(function() {
             $('#failureCount').text(App.failureCount);
         }
     });
-    
+
     // Manejador para actualizar el código manual en tiempo real
-    $(document).ready(function () {
-        $('#manualInput').on('input', function () {
+    $(document).ready(function() {
+        $('#manualInput').on('input', function() {
             var manualCode = $(this).val().trim();
             $('#manualCodeDisplay').html("Código manual: " + manualCode);
         });
     });
+});
     
 
 /* regulero
