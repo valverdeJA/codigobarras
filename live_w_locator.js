@@ -66,25 +66,30 @@ $(function() {
 
     var lastScanTime = null;
 
-Quagga.onDetected(function(result) {
-    var code = result.codeResult.code;
-    $('#detectedCode').html("Código detectado: " + code);
-
+    Quagga.onDetected(function(result) {
+        var code = result.codeResult.code;
+        $('#detectedCode').html("Código detectado: " + code);
+    
+        // Obtener el código manual en el momento de la detección
+        var manualCode = $('#manualInput').val().trim();
+    
+        if (manualCode && manualCode === code) {
+            App.successCount++;
+            $('#successCount').text(App.successCount);
+        } else {
+            App.failureCount++;
+            $('#failureCount').text(App.failureCount);
+        }
+    });
+    
+    // Manejador para actualizar el código manual en tiempo real
     $(document).ready(function () {
         $('#manualInput').on('input', function () {
             var manualCode = $(this).val().trim();
             $('#manualCodeDisplay').html("Código manual: " + manualCode);
         });
     });
-
-    if (manualCode && manualCode === code) {
-        App.successCount++;
-        $('#successCount').text(App.successCount);
-    } else {
-        App.failureCount++;
-        $('#failureCount').text(App.failureCount);
-    }
-});
+    
 
 /* regulero
     var lastScanTime = null; // Para almacenar el tiempo de la última detección
