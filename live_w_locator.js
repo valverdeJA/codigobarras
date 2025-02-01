@@ -88,6 +88,18 @@ $(function() {
         //$('#detectedCode').text("Código detectado: " + code);
         // Añadir el nuevo párrafo al contenedor
         //$('#result_strip').prepend($node); // Añade al principio para que el último código aparezca primero
+
+        // Obtener el código introducido manualmente
+    var manualCode = $('#manualInput').val().trim();
+
+    // Comparar los códigos
+    if (manualCode === code) {
+        App.successCount++; // Incrementar aciertos
+        $('#successCount').text(App.successCount);
+    } else {
+        App.failureCount++; // Incrementar fallos
+        $('#failureCount').text(App.failureCount);
+    }
     });
 
 /* regulero
