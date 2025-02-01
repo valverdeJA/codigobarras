@@ -1,5 +1,8 @@
 $(function() {
     var App = {
+        successCount: 0, // Inicializa el contador de aciertos
+        failureCount: 0, // Inicializa el contador de fallos
+        
         init : function() {
             Quagga.init(this.state, function(err) {
                 if (err) {
