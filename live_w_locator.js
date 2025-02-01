@@ -2,7 +2,7 @@ $(function() {
     var App = {
         successCount: 0, // Inicializa el contador de aciertos
         failureCount: 0, // Inicializa el contador de fallos
-        
+
         init : function() {
             Quagga.init(this.state, function(err) {
                 if (err) {
@@ -66,44 +66,21 @@ $(function() {
 
     var lastScanTime = null;
 
-    Quagga.onDetected(function(result) {
-        var code = result.codeResult.code;
-        var currentTime = new Date().getTime(); // Obtener el tiempo actual en milisegundos
-    
-        var scanTime = null;
-        var scanSpeedText = ''; // Inicializamos la variable para mostrar la velocidad de escaneo
-    
-        // Si no es la primera detección, calculamos el tiempo de escaneo y la velocidad
-        if (lastScanTime !== null) {
-            scanTime = currentTime - lastScanTime; // Tiempo transcurrido desde la última detección en ms
-            var scanSpeed = 1000 / scanTime; // Velocidad de escaneo en escaneos por segundo
-            scanSpeedText = " (Velocidad: " + scanSpeed.toFixed(2) + " escaneos por segundo)"; // Texto con la velocidad
-        }
-    
-        lastScanTime = currentTime; // Actualizamos el tiempo de la última detección
-    
-        // Crear un nuevo párrafo para el código y la velocidad
-        var $node = $('<p></p>').html("Código: " + code + " (Escaneado en: " + scanTime + "ms)" + scanSpeedText);
-    
-        // Mostrar el código detectado
-        $('#detectedCode').html("Código detectado: " + code);
-        //$('#detectedCode').html(`Código detectado: ${code}`);
-        //$('#detectedCode').text("Código detectado: " + code);
-        // Añadir el nuevo párrafo al contenedor
-        //$('#result_strip').prepend($node); // Añade al principio para que el último código aparezca primero
+Quagga.onDetected(function(result) {
+    var code = result.codeResult.code;
+    $('#detectedCode').html("Código detectado: " + code);
 
-        // Obtener el código introducido manualmente
     var manualCode = $('#manualInput').val().trim();
+    $('#manualCodeDisplay').html("Código manual: " + manualCode);
 
-    // Comparar los códigos
-    if (manualCode === code) {
-        App.successCount++; // Incrementar aciertos
+    if (manualCode && manualCode === code) {
+        App.successCount++;
         $('#successCount').text(App.successCount);
     } else {
-        App.failureCount++; // Incrementar fallos
+        App.failureCount++;
         $('#failureCount').text(App.failureCount);
     }
-    });
+});
 
 /* regulero
     var lastScanTime = null; // Para almacenar el tiempo de la última detección
