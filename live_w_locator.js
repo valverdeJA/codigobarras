@@ -130,5 +130,6 @@ $(function() {
             $("#result_strip ul.thumbnails").prepend($node);
         }
     });
-*/
+
 });
+*/
