@@ -70,8 +70,12 @@ Quagga.onDetected(function(result) {
     var code = result.codeResult.code;
     $('#detectedCode').html("Código detectado: " + code);
 
-    var manualCode = $('#manualInput').val().trim();
-    $('#manualCodeDisplay').html("Código manual: " + manualCode);
+    $(document).ready(function () {
+        $('#manualInput').on('input', function () {
+            var manualCode = $(this).val().trim();
+            $('#manualCodeDisplay').html("Código manual: " + manualCode);
+        });
+    });
 
     if (manualCode && manualCode === code) {
         App.successCount++;

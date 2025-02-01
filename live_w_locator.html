@@ -53,9 +53,8 @@
         <div id="interactive" class="viewport" style="max-width: 640px; max-height: 480px;"></div> <!-- 163 x 122.5-->
 
         <!-- Cuadro de texto para introducción manual -->
-        <div class="input-section">
-          <input type="text" id="manualInput" placeholder="Introduce el código manualmente">
-        </div>
+        <input type="text" id="manualInput" placeholder="Introduce el código manualmente">
+        <div id="manualCodeDisplay">Código manual: </div>
 
         <!-- Resultados y comparación -->
         <div class="results-section">
@@ -71,11 +70,12 @@
         </div>
       </div>
     </div>
+    
 
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="/codigobarras/dist/quagga.min.js" type="text/javascript"></script>
-    <script src="live_w_locator.js" type="text/javascript"></script>
     <script src="https://serratus.github.io/quaggaJS/javascripts/scale.fix.js"></script>
+    <script src="live_w_locator.js" type="text/javascript"></script>
   </body>
 </html>
 
