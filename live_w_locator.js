@@ -13,8 +13,8 @@ $(function() {
             inputStream: {
                 type : "LiveStream",
                 constraints: {
-                    width: {min: 800},
-                    height: {min: 600},
+                    width: {min: 1600},
+                    height: {min: 960},
                     aspectRatio: {min: 1, max: 100},
                     facingMode: "environment" // or user
                 }
