@@ -10,18 +10,20 @@
     <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/example.css">
     <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/pygment_trac.css">
     <style>
-        .scan-zone {
-            position: absolute;
-            top: 50%;  /*Centrado verticalmente */
-            left: 50%;  /*Centrado horizontalmente */
-            /*transform: translate(-50%, -50%);  Ajuste preciso para centrar */
-            width: 300px; /* Ancho del área de escaneo */
-            height: 100px; /* Alto del área de escaneo */
-            border: 2px dashed rgba(255, 0, 0, 0.8); /* Borde rojo semitransparente */
-            background-color: rgba(255, 0, 0, 0.2); /* Fondo rojo semitransparente */
-            box-sizing: border-box;
-            pointer-events: none; /* No interfiere con el escaneo */
-        }
+.scan-zone {
+    position: absolute;
+    top: 50%; /* Centrado verticalmente */
+    left: 50%; /* Centrado horizontalmente */
+    width: 240px; /* 30% de 800px */
+    height: 300px; /* 50% de 600px */
+    transform: translate(-50%, -50%); /* Centrar respecto a su propio tamaño */
+    border: 2px dashed rgba(255, 0, 0, 0.8); /* Borde rojo punteado */
+    background-color: rgba(255, 0, 0, 0.2); /* Rojo semitransparente */
+    box-sizing: border-box;
+    pointer-events: none; /* Evita interferencia con interacciones */
+}
+
+
         #reader-SERIAL_NUMBER {
         position: relative;
 
@@ -37,7 +39,10 @@
           <button type="button" id="start-scanner-serial-number">Iniciar Escaneo</button>
           <div id="reader-SERIAL_NUMBER" class="viewport">
             <!-- Zona de escaneo en el div -->
+            <div id="scan-zone"></div>
             <div id="scan-zone-SERIAL_NUMBER" class="scan-zone" style="display: none;"></div>
+
+
           </div>
         </div>
     <script src="//code.jquery.com/jquery-3.7.1.min.js"></script>

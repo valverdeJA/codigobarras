@@ -22,10 +22,10 @@ $(function() {
                     facingMode: "environment" // o "user" si prefieres usar la cámara frontal
                 },
                 area: { // Define el área de detección dentro del stream
-                    top: "90%",    // 10% desde la parte superior
-                    right: "95%",  // 15% desde el borde derecho
-                    left: "95%",   // 15% desde el borde izquierdo
-                    bottom: "90%"  // 10% desde la parte inferior
+                    top: "50%",    // 10% desde la parte superior
+                    right: "70%",  // 15% desde el borde derecho
+                    left: "70%",   // 15% desde el borde izquierdo
+                    bottom: "50%"  // 10% desde la parte inferior
                 },
             },
             locator: {
