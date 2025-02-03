@@ -12,6 +12,7 @@ $(function() {
         state: {
             inputStream: {
                 type : "LiveStream",
+                target: document.querySelector('#sn-reader'),
                 constraints: {
                     width: {min: 800},
                     height: {min: 600},
