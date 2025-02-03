@@ -24,26 +24,40 @@
             height: 100%;
             object-fit: cover; /* Esto ajustará el video o canvas para cubrir el área del div sin distorsionarse */
             }
+        .scan-zone {
+            position: absolute;
+            top: 100px; /* Ajusta la posición según el lugar donde quieras mostrar la zona */
+            left: 50%;
+            transform: translateX(-50%); /* Centra la zona en el div */
+            width: 250px; /* Ancho de la zona */
+            height: 250px; /* Alto de la zona */
+            border: 2px dashed rgba(255, 0, 0, 0.8); /* Borde de la zona */
+            background-color: rgba(255, 0, 0, 0.2); /* Color de fondo semitransparente */
+            box-sizing: border-box;
+            pointer-events: none; /* Evita que interfiera con el escaneo */
+            }
+
     </style>
 
   </head>
   <body>
     <div class="wrapper">
         <div class="container_serial_number" style="width: 50%; float: left;">
-          <!-- Cuadro de texto -->
           <input type="text" id="SERIAL_NUMBER" name="SERIAL_NUMBER">
-      
-          <!-- Botón -->
           <button type="button" id="start-scanner-serial-number">Iniciar Escaneo</button>
-      
-          <!-- Vista de la cámara -->
-          <div id="reader-SERIAL_NUMBER" class="viewport" style="max-width: 640px; max-height: 480px;"></div>
+          <div id="reader-SERIAL_NUMBER" class="viewport" style="max-width: 640px; max-height: 480px;">
+            <!-- Zona de escaneo en el div -->
+            <div id="scan-zone-SERIAL_NUMBER" class="scan-zone"></div>
+          </div>
         </div>
     
         <div class="container_codigo_maquina" style="width: 50%; float: left;">
           <input type="text" id="CODE_MACHINE" name="CODE_MACHINE">
           <button type="button" id="start-scanner-code-machine">Iniciar Escaneo</button>
-          <div id="reader-CODE_MACHINE" class="viewport" style="max-width: 640px; max-height: 480px;"></div>
+          <div id="reader-CODE_MACHINE" class="viewport" style="max-width: 640px; max-height: 480px;">
+            <!-- Zona de escaneo en el div -->
+            <div id="scan-zone-CODE_MACHINE" class="scan-zone"></div>
+          </div>
         </div>
       </div>
 
