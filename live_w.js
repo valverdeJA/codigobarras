@@ -1,50 +1,44 @@
-$(document).ready(function() {
-    // Botón para escanear el número de serie
-    $('#start-scanner-serial-number').click(function() {
-        startCamera('SERIAL_NUMBER');  // Pasa el id del campo de entrada
-    });
+$(function() {
+    var App = {
+        successCount: 0, // Inicializa el contador de aciertos
+        failureCount: 0, // Inicializa el contador de fallos
 
-    // Botón para escanear el código de la máquina
-    $('#start-scanner-code-machine').click(function() {
-        startCamera('CODE_MACHINE');  // Pasa el id del campo de entrada
-    });
-});
-
-
-var elementReturn = '';
-
-// Función para iniciar la cámara y escanear códigos de barras
-function startCamera(inputElement) {
-    elementReturn = inputElement;
-
-    Quagga.init({
-        inputStream: {
-            type: "LiveStream",
-            constraints: {
-                width: { min: 640 }, // 1600
-                height: { min: 480 }, // 960
-                aspectRatio: { min: 1, max: 100 },
-                facingMode: "environment" // Cámara trasera
-            }
+        init : function() {
+            Quagga.init(this.state, function(err) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                Quagga.start();
+            });
         },
-        locator: {
-            patchSize: "medium",
-            halfSample: false
+        state: {
+            inputStream: {
+                type : "LiveStream",
+                constraints: {
+                    width: {min: 800},
+                    height: {min: 600},
+                    aspectRatio: {min: 1, max: 100},
+                    facingMode: "environment" // or user
+                }
+            },
+            locator: {
+                patchSize: "medium",
+                halfSample: false
+            },
+            numOfWorkers: 4,
+            frequency: 10,
+            decoder: {
+                readers : [{
+                    format: "code_39_reader",
+                    config: {}
+                }]
+            },
+            locate: true
         },
-        numOfWorkers: 4,
-        frequency: 10,
-        decoder: {
-            readers: ["code_39_reader"] // Lector de código de barras Code 39
-        },
-        locate: true
-    }, function (err) {
-        if (err) {
-            console.error("Error al iniciar Quagga:", err);
-            return;
-        }
-        Quagga.start();
-    });
-}
+    };
+
+    App.init();
 
     Quagga.onProcessed(function(result) {
         var drawingCtx = Quagga.canvas.ctx.overlay,
@@ -70,14 +64,33 @@ function startCamera(inputElement) {
         }
     });
 
+    var lastScanTime = null;
 
-    Quagga.onDetected(function (result) {
+    Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
-        //console.log("Código detectado:", code);
-        
-        if (elementReturn) {
-            document.getElementById(elementReturn).value = code;
-            stopCamera();
+        $('#detectedCode').html("Código detectado: " + code);
+
+        // Obtener el código manual
+        var manualCode = $('#manualInput').val().trim();
+
+        // Mostrar el código manual en la pantalla
+        $('#manualCodeDisplay').html("Código manual: " + manualCode);
+
+        // Comparar el código manual con el código detectado
+        if (manualCode && manualCode === code) {
+            App.successCount++;
+            $('#successCount').text(App.successCount);
+        } else {
+            App.failureCount++;
+            $('#failureCount').text(App.failureCount);
         }
     });
-    
+
+    // Manejador para actualizar el código manual en tiempo real
+    $(document).ready(function() {
+        $('#manualInput').on('input', function() {
+            var manualCode = $(this).val().trim();
+            $('#manualCodeDisplay').html("Código manual: " + manualCode);
+        });
+    });
+});
