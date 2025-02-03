@@ -9,6 +9,22 @@
     <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/styles.css">
     <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/example.css">
     <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/pygment_trac.css">
+    <style>
+        #sn-reader {
+            position: relative;
+            width: 100%;
+            max-width: 640px;
+            max-height: 480px;
+            overflow: hidden; /* Asegura que nada se salga del div */
+            }
+
+        #sn-reader video,
+            #sn-reader canvas {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Esto ajustará el video o canvas para cubrir el área del div sin distorsionarse */
+            }
+    </style>
 
   </head>
   <body>
