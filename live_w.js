@@ -1,8 +1,5 @@
 $(function() {
     var App = {
-        successCount: 0, // Inicializa el contador de aciertos
-        failureCount: 0, // Inicializa el contador de fallos
-
         init : function() {
             Quagga.init(this.state, function(err) {
                 if (err) {
@@ -70,23 +67,9 @@ $(function() {
 
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
-        $('#detectedCode').html("Código detectado: " + code);
-
-        // Obtener el código manual
-        var manualCode = $('#manualInput').val().trim();
-
-        // Mostrar el código manual en la pantalla
-        $('#manualCodeDisplay').html("Código manual: " + manualCode);
-
-        // Comparar el código manual con el código detectado
-        if (manualCode && manualCode === code) {
-            App.successCount++;
-            $('#successCount').text(App.successCount);
-        } else {
-            App.failureCount++;
-            $('#failureCount').text(App.failureCount);
-        }
-    });
+        // Coloca el código detectado en el campo SERIAL_NUMBER
+        $('#SERIAL_NUMBER').val(code);
+            });
 
     // Manejador para actualizar el código manual en tiempo real
     $(document).ready(function() {
