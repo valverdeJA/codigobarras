@@ -25,7 +25,7 @@ $(function() {
                 constraints: {
                     width: 640,
                     height: 480,
-                    aspectRatio: {min: 1, max: 1},
+                    aspectRatio: {min: 1, max: 2},
                     facingMode: "environment" // o "user" si prefieres usar la cámara frontal
                 }
             },
@@ -34,7 +34,7 @@ $(function() {
                 right: "10%",  // right offset
                 left: "10%",   // left offset
                 bottom: "10%"  // bottom offset
-              },
+            },
             locator: {
                 patchSize: "medium",
                 halfSample: false
@@ -47,7 +47,13 @@ $(function() {
                     config: {}
                 }]
             },
-            locate: true
+            locate: true,
+            debug: {
+                drawBoundingBox: true,
+                showFrequency: true,
+                drawScanline: true,
+                showPattern: true
+            },
         },
     };
 
