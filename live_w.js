@@ -8,15 +8,6 @@ $(function() {
                     console.log(err);
                     return;
                 }
-                // Ajustar el tamaño del canvas según el tamaño del div contenedor
-                var readerElement = document.querySelector('#reader-SERIAL_NUMBER');
-                var canvasElement = readerElement.querySelector('canvas.drawingBuffer');
-                
-                if (canvasElement) {
-                    canvasElement.width = readerElement.offsetWidth;
-                    canvasElement.height = readerElement.offsetHeight;
-                }
-
                 Quagga.start();
             });
         },
@@ -31,17 +22,11 @@ $(function() {
                     facingMode: "environment" // o "user" si prefieres usar la cámara frontal
                 }
             },
-            area: {
-                top: "10%",    // top offset
-                right: "10%",  // right offset
-                left: "10%",   // left offset
-                bottom: "10%"  // bottom offset
-            },
             locator: {
                 patchSize: "medium",
                 halfSample: false
             },
-            numOfWorkers: 4,
+            numOfWorkers: 8,
             frequency: 10,
             decoder: {
                 readers : [{
@@ -50,12 +35,6 @@ $(function() {
                 }]
             },
             locate: true,
-            debug: {
-                drawBoundingBox: true,  // Habilita la caja alrededor del código detectado
-                showFrequency: true,    // Muestra la frecuencia de la detección
-                drawScanline: true,    // Dibuja la línea de escaneo
-                showPattern: true      // Muestra el patrón de localización
-            },
         },
     };
 
