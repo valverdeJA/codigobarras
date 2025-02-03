@@ -21,8 +21,8 @@ function startCamera(inputElement) {
         inputStream: {
             type: "LiveStream",
             constraints: {
-                width: { min: 640 }, // 1600
-                height: { min: 480 }, // 960
+                width: { min: 800 }, // 1600
+                height: { min: 600 }, // 960
                 aspectRatio: { min: 1, max: 100 },
                 facingMode: "environment" // Cámara trasera
             }
