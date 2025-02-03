@@ -38,7 +38,9 @@ $(function() {
         },
     };
 
-    App.init();
+    $('#start-scanner-serial-number').click(function() {
+        App.init(); // Inicia el escaneo al hacer clic en el botón
+    });
 
     Quagga.onProcessed(function(result) {
         var drawingCtx = Quagga.canvas.ctx.overlay,
