@@ -20,7 +20,13 @@ $(function() {
                     height: 600,
                     aspectRatio: {min: 1, max: 100},
                     facingMode: "environment" // o "user" si prefieres usar la cámara frontal
-                }
+                },
+                area: { // Define el área de detección dentro del stream
+                    top: "90%",    // 10% desde la parte superior
+                    right: "95%",  // 15% desde el borde derecho
+                    left: "95%",   // 15% desde el borde izquierdo
+                    bottom: "90%"  // 10% desde la parte inferior
+                },
             },
             locator: {
                 patchSize: "medium",
