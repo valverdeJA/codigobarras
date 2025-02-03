@@ -23,12 +23,18 @@ $(function() {
                 type : "LiveStream",
                 target: document.querySelector('#reader-SERIAL_NUMBER'), // Este target cambiará dependiendo del botón que presionen
                 constraints: {
-                    width: {min: 1600},
-                    height: {min: 960},
+                    width: 1600},
+                    height: 960,
                     aspectRatio: {min: 1, max: 1},
                     facingMode: "environment" // o "user" si prefieres usar la cámara frontal
                 }
             },
+            area: { // defines rectangle of the detection/localization area
+                top: "10%",    // top offset
+                right: "10%",  // right offset
+                left: "10%",   // left offset
+                bottom: "10%"  // bottom offset
+              },
             locator: {
                 patchSize: "medium",
                 halfSample: false
