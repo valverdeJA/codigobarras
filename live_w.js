@@ -41,6 +41,8 @@ $(function() {
         elementReturn = 'SERIAL_NUMBER';  // Establece el campo de texto al que se le colocará el código
         $('#reader-SERIAL_NUMBER').show();  // Muestra el div correspondiente
         $('#reader-CODE_MACHINE').hide();  // Oculta el otro div
+
+        $('#scan-zone-SERIAL_NUMBER').show();
         App.state.inputStream.target = document.querySelector('#reader-SERIAL_NUMBER'); // Cambia el target al div correcto
         App.init();  // Inicia el escaneo
     });
