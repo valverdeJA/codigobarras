@@ -6,6 +6,15 @@ $(function() {
                     console.log(err);
                     return;
                 }
+                 // Ajustar el tamaño del canvas según el tamaño del div contenedor
+                 var readerElement = document.querySelector('#reader-SERIAL_NUMBER');
+                 var canvasElement = readerElement.querySelector('canvas.drawingBuffer');
+                 
+                 if (canvasElement) {
+                     canvasElement.width = readerElement.offsetWidth;
+                     canvasElement.height = readerElement.offsetHeight;
+                 }
+                 
                 Quagga.start();
             });
         },
