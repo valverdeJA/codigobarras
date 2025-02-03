@@ -40,6 +40,7 @@ $(function() {
         App.init(); // Inicia el escaneo al hacer clic en el botón
     });
 
+    /*
     Quagga.onProcessed(function(result) {
         var drawingCtx = Quagga.canvas.ctx.overlay,
             drawingCanvas = Quagga.canvas.dom.overlay;
@@ -63,7 +64,7 @@ $(function() {
             }
         }
     });
-
+*/
 
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
@@ -71,6 +72,8 @@ $(function() {
         $('#SERIAL_NUMBER').val(code);
 
         Quagga.stop();
+
+        $('#reader-SERIAL_NUMBER').hide();
             });
 
 });
