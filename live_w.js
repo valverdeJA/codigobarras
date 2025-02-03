@@ -14,8 +14,8 @@ $(function() {
                 type : "LiveStream",
                 target: document.querySelector('#reader-SERIAL_NUMBER'), // Este target cambiará dependiendo del botón que presionen
                 constraints: {
-                    width: {min: 800},
-                    height: {min: 600},
+                    width: {min: 640},
+                    height: {min: 480},
                     aspectRatio: {min: 1, max: 100},
                     facingMode: "environment" // o "user" si prefieres usar la cámara frontal
                 }
