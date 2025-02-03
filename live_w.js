@@ -14,8 +14,8 @@ $(function() {
                 type : "LiveStream",
                 target: document.querySelector('#reader-SERIAL_NUMBER'), // Este target cambiará dependiendo del botón que presionen
                 constraints: {
-                    width: {min: 800},
-                    height: {min: 600},
+                    width: {min: 640},
+                    height: {min: 480},
                     aspectRatio: {min: 1, max: 1},
                     facingMode: "environment" // o "user" si prefieres usar la cámara frontal
                 }
@@ -36,7 +36,7 @@ $(function() {
         },
     };
 
-    // Asocia el evento de clic en el botón "start-scanner-serial-number"
+    // Asocia el evento de clic en el botón "start-scanner-serial-number" ha subidO?
     $('#start-scanner-serial-number').click(function() {
         elementReturn = 'SERIAL_NUMBER';  // Establece el campo de texto al que se le colocará el código
         $('#reader-SERIAL_NUMBER').show();  // Muestra el div correspondiente
