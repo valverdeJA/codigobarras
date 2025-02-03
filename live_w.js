@@ -14,7 +14,7 @@ $(function() {
                      canvasElement.width = readerElement.offsetWidth;
                      canvasElement.height = readerElement.offsetHeight;
                  }
-                 
+
                 Quagga.start();
             });
         },
@@ -23,8 +23,8 @@ $(function() {
                 type : "LiveStream",
                 target: document.querySelector('#reader-SERIAL_NUMBER'), // Este target cambiará dependiendo del botón que presionen
                 constraints: {
-                    width: {min: 640},
-                    height: {min: 480},
+                    width: {min: 1600},
+                    height: {min: 960},
                     aspectRatio: {min: 1, max: 1},
                     facingMode: "environment" // o "user" si prefieres usar la cámara frontal
                 }
