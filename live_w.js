@@ -1,3 +1,16 @@
+$(document).ready(function() {
+    // Botón para escanear el número de serie
+    $('#start-scanner-serial-number').click(function() {
+        startCamera('SERIAL_NUMBER');  // Pasa el id del campo de entrada
+    });
+
+    // Botón para escanear el código de la máquina
+    $('#start-scanner-code-machine').click(function() {
+        startCamera('CODE_MACHINE');  // Pasa el id del campo de entrada
+    });
+});
+
+
 var elementReturn = '';
 
 // Función para iniciar la cámara y escanear códigos de barras
