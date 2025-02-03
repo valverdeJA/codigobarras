@@ -45,22 +45,11 @@
         <div class="container_serial_number" style="width: 50%; float: left;">
           <input type="text" id="SERIAL_NUMBER" name="SERIAL_NUMBER">
           <button type="button" id="start-scanner-serial-number">Iniciar Escaneo</button>
-          <div id="reader-SERIAL_NUMBER" class="viewport" style="max-width: 320px; max-height: 240px;">
+          <div id="reader-SERIAL_NUMBER" class="viewport" style="max-width: 640px; max-height:480px;">
             <!-- Zona de escaneo en el div -->
             <div id="scan-zone-SERIAL_NUMBER" class="scan-zone" style="display: none;"></div>
           </div>
         </div>
-    
-        <div class="container_codigo_maquina" style="width: 50%; float: left;">
-          <input type="text" id="CODE_MACHINE" name="CODE_MACHINE">
-          <button type="button" id="start-scanner-code-machine">Iniciar Escaneo</button>
-          <div id="reader-CODE_MACHINE" class="viewport" style="max-width: 640px; max-height: 480px;">
-            <!-- Zona de escaneo en el div -->
-            <div id="scan-zone-CODE_MACHINE" class="scan-zone" style="display: none;"></div>
-          </div>
-        </div>
-      </div>
-
     <script src="//code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="/codigobarras/dist/quagga.min.js" type="text/javascript"></script>
     <script src="https://serratus.github.io/quaggaJS/javascripts/scale.fix.js"></script>

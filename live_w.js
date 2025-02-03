@@ -16,7 +16,7 @@ $(function() {
                 constraints: {
                     width: {min: 800},
                     height: {min: 600},
-                    aspectRatio: {min: 1, max: 100},
+                    aspectRatio: {min: 1, max: 1},
                     facingMode: "environment" // o "user" si prefieres usar la cámara frontal
                 }
             },
