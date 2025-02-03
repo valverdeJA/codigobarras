@@ -7,7 +7,6 @@ function startCamera(inputElement) {
     Quagga.init({
         inputStream: {
             type: "LiveStream",
-            target: "#interactive",
             constraints: {
                 width: { min: 1600 },
                 height: { min: 960 },
