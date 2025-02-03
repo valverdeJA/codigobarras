@@ -1,4 +1,6 @@
 $(function() {
+    var elementReturn;  // Mover la variable `elementReturn` a un ámbito más controlado.
+
     var App = {
         init : function() {
             Quagga.init(this.state, function(err) {
@@ -6,14 +8,14 @@ $(function() {
                     console.log(err);
                     return;
                 }
-                 // Ajustar el tamaño del canvas según el tamaño del div contenedor
-                 var readerElement = document.querySelector('#reader-SERIAL_NUMBER');
-                 var canvasElement = readerElement.querySelector('canvas.drawingBuffer');
-                 
-                 if (canvasElement) {
-                     canvasElement.width = readerElement.offsetWidth;
-                     canvasElement.height = readerElement.offsetHeight;
-                 }
+                // Ajustar el tamaño del canvas según el tamaño del div contenedor
+                var readerElement = document.querySelector('#reader-SERIAL_NUMBER');
+                var canvasElement = readerElement.querySelector('canvas.drawingBuffer');
+                
+                if (canvasElement) {
+                    canvasElement.width = readerElement.offsetWidth;
+                    canvasElement.height = readerElement.offsetHeight;
+                }
 
                 Quagga.start();
             });
@@ -29,7 +31,7 @@ $(function() {
                     facingMode: "environment" // o "user" si prefieres usar la cámara frontal
                 }
             },
-            area: { // defines rectangle of the detection/localization area
+            area: {
                 top: "10%",    // top offset
                 right: "10%",  // right offset
                 left: "10%",   // left offset
@@ -49,15 +51,15 @@ $(function() {
             },
             locate: true,
             debug: {
-                drawBoundingBox: true,
-                showFrequency: true,
-                drawScanline: true,
-                showPattern: true
+                drawBoundingBox: true,  // Habilita la caja alrededor del código detectado
+                showFrequency: true,    // Muestra la frecuencia de la detección
+                drawScanline: true,    // Dibuja la línea de escaneo
+                showPattern: true      // Muestra el patrón de localización
             },
         },
     };
 
-    // Asocia el evento de clic en el botón "start-scanner-serial-number" ha subidO?
+    // Asocia el evento de clic en el botón "start-scanner-serial-number"
     $('#start-scanner-serial-number').click(function() {
         elementReturn = 'SERIAL_NUMBER';  // Establece el campo de texto al que se le colocará el código
         $('#reader-SERIAL_NUMBER').show();  // Muestra el div correspondiente
@@ -89,88 +91,3 @@ $(function() {
         $('#reader-' + elementReturn).hide();
     });
 });
-
-
-
-
-
-/* FUNCIONA
-$(function() {
-    var App = {
-        init : function() {
-            Quagga.init(this.state, function(err) {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                Quagga.start();
-            });
-        },
-        state: {
-            inputStream: {
-                type : "LiveStream",
-                target: document.querySelector('#reader-SERIAL_NUMBER'),
-                constraints: {
-                    width: {min: 800},
-                    height: {min: 600},
-                    aspectRatio: {min: 1, max: 100},
-                    facingMode: "environment" // or user
-                }
-            },
-            locator: {
-                patchSize: "medium",
-                halfSample: false
-            },
-            numOfWorkers: 4,
-            frequency: 10,
-            decoder: {
-                readers : [{
-                    format: "code_39_reader",
-                    config: {}
-                }]
-            },
-            locate: true
-        },
-    };
-
-    $('#start-scanner-serial-number').click(function() {
-        App.init(); // Inicia el escaneo al hacer clic en el botón
-    });
-
-    /*
-    Quagga.onProcessed(function(result) {
-        var drawingCtx = Quagga.canvas.ctx.overlay,
-            drawingCanvas = Quagga.canvas.dom.overlay;
-
-        if (result) {
-            if (result.boxes) {
-                drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
-                result.boxes.filter(function (box) {
-                    return box !== result.box;
-                }).forEach(function (box) {
-                    Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
-                });
-            }
-
-            if (result.box) {
-                Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
-            }
-
-            if (result.codeResult && result.codeResult.code) {
-                Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
-            }
-        }
-    });
-
-
-    Quagga.onDetected(function(result) {
-        var code = result.codeResult.code;
-        // Coloca el código detectado en el campo SERIAL_NUMBER
-        $('#SERIAL_NUMBER').val(code);
-
-        Quagga.stop();
-
-        $('#reader-SERIAL_NUMBER').hide();
-            });
-
-});*/
