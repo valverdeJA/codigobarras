@@ -29,14 +29,24 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="container">
+      <div class="container_serial_number">
         <!-- Cuadro de texto está correcto?-->
     <input type="text" id="SERIAL_NUMBER" name="SERIAL_NUMBER">
 
     <!-- Botón -->
     <button type="button" id="start-scanner-serial-number">Iniciar Escaneo</button>
         <!-- Vista de la cámara -->
-        <div id="sn-reader" class="viewport" style="max-width: 640px; max-height: 480px;"></div> <!-- 163 x 122.5-->
+        <div id="reader-SERIAL_NUMBER" class="viewport" style="max-width: 640px; max-height: 480px;"></div> <!-- 163 x 122.5-->
+      </div>
+      
+      <div class="container_codigo_maquina">
+        <!-- Cuadro de texto está correcto?-->
+    <input type="text" id="CODE_MACHINE" name="CODE_MACHINE">
+
+    <!-- Botón -->
+    <button type="button" id="start-scanner-code-machine">Iniciar Escaneo</button>
+        <!-- Vista de la cámara -->
+        <div id="reader-CODE_MACHINE" class="viewport" style="max-width: 640px; max-height: 480px;"></div> <!-- 163 x 122.5-->
       </div>
     </div>
     

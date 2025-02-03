@@ -12,7 +12,7 @@ $(function() {
         state: {
             inputStream: {
                 type : "LiveStream",
-                target: document.querySelector('#sn-reader'),
+                target: document.querySelector('#reader-SERIAL_NUMBER'),
                 constraints: {
                     width: {min: 800},
                     height: {min: 600},
@@ -64,19 +64,13 @@ $(function() {
         }
     });
 
-    var lastScanTime = null;
 
     Quagga.onDetected(function(result) {
         var code = result.codeResult.code;
         // Coloca el código detectado en el campo SERIAL_NUMBER
         $('#SERIAL_NUMBER').val(code);
+
+        Quagga.stop();
             });
 
-    // Manejador para actualizar el código manual en tiempo real
-    $(document).ready(function() {
-        $('#manualInput').on('input', function() {
-            var manualCode = $(this).val().trim();
-            $('#manualCodeDisplay').html("Código manual: " + manualCode);
-        });
-    });
 });
